@@ -31,7 +31,8 @@ import axios from 'axios';
 
 const move = async (token, dir, next_room) => {
   let url = 'https://lambda-treasure-hunt.herokuapp.com/api/adv/move/';
-  let body = {Authorization: `Token ${token}`, direction: dir};
+  // body: {direction: dir}
+  let body =  {headers: {Authorization: `Token ${token}`}, direction: dir, withCredentials: true};
   if(next_room) body['next_room_id'] = next_room;
   let res = await axios.post(url, body);
   return res.data;
