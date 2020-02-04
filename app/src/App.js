@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Map from './components/Map';
+import UserInfo from "./components/UserInfo";
+import Logs from "./components/Logs";
+import { MapContext } from './state/StateManagement';
 
+// we need some state management here to hold the map, and logic for when you interact with out own backend vs the public lambda server
 function App() {
+  const [token, setToken] = useState('');
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MapContext.Provider value={MapContext} >
+        <header className="App-header">
+          <div className='game'>
+            <Map />
+            <UserInfo token={token} setToken={setToken} />
+            <Logs />
+          </div>
+        </header>
+      </MapContext.Provider>
     </div>
   );
 }
