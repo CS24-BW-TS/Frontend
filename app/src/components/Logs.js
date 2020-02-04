@@ -15,7 +15,7 @@ const Logs = (props) => {
   return (
     <div className='logs' >
       {/*shows responses from the server */}
-      {logs.length > 0 && logs.map(line => <Typography color={"primary"}>{line.title}</Typography>)}
+      {/*{logs.length > 0 && logs.map(line => <Typography color={"primary"}>{line.title}</Typography>)}*/}
       {console.log(logs)}
     </div>
   );

@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 let url = 'https://lambda-treasure-hunt.herokuapp.com/api/adv/init/';
 
 
@@ -16,7 +17,7 @@ let url = 'https://lambda-treasure-hunt.herokuapp.com/api/adv/init/';
  */
 
 const init = async (token) => {
-  let res = await axios.get(url, {Authorization: `Token ${token}`});
+  let res = await axios.get(url, {headers: {Authorization: `Token ${token}`}});
   return res.data;
 };
 
