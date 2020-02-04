@@ -12,7 +12,8 @@ const UserInfo = (props) => {
 
   return (
     <div className='user-info'>
-      <!-- form for personal auth token, other interface stuff for commends -->
+      {// <!-- form for personal auth token, other interface stuff for commends -->
+      }
       <form className='user-form'>
         <TextField id='user-token' label='Token' value={token} onChange={updateToken} />
         <Button variant='contained'>Init</Button>
@@ -21,7 +22,8 @@ const UserInfo = (props) => {
         <Button variant='contained' color='primary'>Move South</Button>
         <Button variant='contained' color='primary'>Move West</Button>
         <Button variant='contained' color='secondary'>Run Algorithm</Button>
-        <!-- As we flesh out the algorithms we might need more buttons to occupy specific tasks  -->
+        {//<!-- As we flesh out the algorithms we might need more buttons to occupy specific tasks  -->
+        }
       </form>
     </div>
   );
