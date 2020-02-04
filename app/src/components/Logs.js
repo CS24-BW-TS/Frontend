@@ -8,7 +8,8 @@ const Logs = (props) => {
 
   return (
     <div className='logs'>
-      <!-- shows responses from the server -->
+      {// shows responses from the server
+      }
 
     </div>
   );
