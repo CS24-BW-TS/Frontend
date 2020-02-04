@@ -7,7 +7,7 @@ import init from "../http/init";
 const UserInfo = (props) => {
     let token = props.token;
     let setToken = props.setToken;
-    // const [state, setState] = useContext(MapContext);
+    const {setContextValue} = useContext(MapContext);
 
     const updateToken = e => {
         e.preventDefault();
@@ -16,20 +16,20 @@ const UserInfo = (props) => {
 
     const moveTo = (d) => {
         //the value for next_room ?
-        // const next_room = 0;
-        // move(token, d, next_room)
-        //     .then(res => {
-        //         setState(state =>({...state, logs: [...state.logs, res]}))
-        //     })
-        //     .catch(err => console.log(err))
+        const next_room = 0;
+        move(token, d, next_room)
+            .then(res => {
+                setContextValue(state =>({...state, logs: [...state.logs, res]}))
+            })
+            .catch(err => console.log(err))
     };
 
     const handleInit = () => {
-        // init(token)
-        //     .then(res => {
-        //         setState(state => ({...state, logs: [...state.logs, res]}))
-        //     })
-        //     .catch(err => console.log(err))
+        init(token)
+            .then(res => {
+                setContextValue(state => ({...state, logs: [...state.logs, res]}))
+            })
+            .catch(err => console.log(err))
     };
 
     return (
