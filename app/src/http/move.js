@@ -29,12 +29,20 @@ import axios from 'axios';
 }
  */
 
+
 const move = async (token, dir, next_room) => {
   let url = 'https://lambda-treasure-hunt.herokuapp.com/api/adv/move/';
   // body: {direction: dir}
-  let body =  {headers: {Authorization: `Token ${token}`}, direction: dir, withCredentials: true};
+  let header = {Authorization: `Token ${token}`, 'Content-Type': 'application/json'};
+  let body = {direction: dir};
+  let axiosWithAuth = axios.create({
+    baseURL: url,
+    headers: header
+  });
+  console.log(body);
   if(next_room) body['next_room_id'] = next_room;
-  let res = await axios.post(url, body);
+  let res = await axiosWithAuth.post('', body);
+  console.log(res);
   return res.data;
 };
 

@@ -17,6 +17,7 @@ let url = 'https://lambda-treasure-hunt.herokuapp.com/api/adv/init/';
  */
 
 const init = async (token) => {
+  let headers = {Authorization: `Token ${token}`};
   let res = await axios.get(url, {headers: {Authorization: `Token ${token}`}});
   return res.data;
 };
