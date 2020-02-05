@@ -19,4 +19,4 @@ const undress = async (token, name) => {
   return res.data;
 };
 
-export default {wear};
+export {wear, undress};
