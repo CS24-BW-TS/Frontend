@@ -7,18 +7,31 @@ import init from "../http/init";
 const UserInfo = (props) => {
     let token = props.token;
     let setToken = props.setToken;
+    const [cooldown, setCooldown] = useState(0); // going to hold a target date object
     const {setContextValue} = useContext(MapContext);
     const updateToken = e => {
         e.preventDefault();
         setToken(e.target.value);
     };
 
+    const checkCooldown = () => {
+        let now = Date.now();
+        return now >= cooldown;
+    };
+
+    const updateCooldown = (cd) => {
+        // convert it to ms
+        setCooldown(cd * 1000 + Date.now());
+    };
+
     const moveTo = (d) => {
         //the value for next_room ?
+        if(!checkCooldown()) return false;
         const next_room = 0;
         move(token, d, next_room)
             .then(res => {
-                setContextValue(state =>({...state, logs: [...state.logs, res]}))
+                setContextValue(state =>({...state, logs: [...state.logs, res]}));
+                updateCooldown(res.cooldown);
             })
             .catch(err => console.log(err))
     };
