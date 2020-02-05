@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosWithAuth from "./axiosWithAuth";
 
 const url ='https://lambda-treasure-hunt.herokuapp.com/api/adv/sell/';
 
@@ -19,21 +20,24 @@ const url ='https://lambda-treasure-hunt.herokuapp.com/api/adv/sell/';
  */
 
 const sell = async (token, name) => {
-  let body = {Authorization: `Token ${token}`, name};
-  let res = await axios.post(url, body);
+  let awa = axiosWithAuth(token, url);
+  let body = {name};
+  let res = await awa.post(url, body);
   return res.data;
 };
 
 
 const confirmSell = async (token, name, confirm) => {
-  let body = {Authorization: `Token ${token}`, name, confirm};
-  let res = await axios.post(url, body);
+  let awa = axiosWithAuth(token, url);
+  let body = {name, confirm};
+  let res = await awa.post(url, body);
   return res.data;
 };
 
 const autoSell = async (token, name) => {
-  let body = {Authorization: `Token ${token}`, name};
-  let res = await axios.post(url, body);
+  let awa = axiosWithAuth(token, url);
+  let body = {name};
+  let res = await awa.post(url, body);
   // check to make sure the response is valid
   body['confirm'] = 'yes';
   res = await axios.post(url, body);

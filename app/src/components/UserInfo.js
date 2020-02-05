@@ -8,7 +8,6 @@ const UserInfo = (props) => {
     let token = props.token;
     let setToken = props.setToken;
     const {setContextValue} = useContext(MapContext);
-    console.log(`token: ${props.token}`);
     const updateToken = e => {
         e.preventDefault();
         setToken(e.target.value);
