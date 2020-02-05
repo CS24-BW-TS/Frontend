@@ -32,6 +32,11 @@ const UserInfo = (props) => {
         setToken(e.target.value);
     };
 
+    const updateVal = (e, hook) => {
+        e.preventDefault();
+        hook(e.target.value);
+    };
+
     const checkCooldown = () => {
         let now = Date.now();
         return now >= cooldown;
@@ -229,29 +234,29 @@ const UserInfo = (props) => {
                 <Button variant='contained' color='secondary'>Run Algorithm</Button>
                 <Button variant='contained' color='secondary' onClick={playerStatus}>Player Status</Button>
                 <br />
-                <TextField id='take-name' label='Take What?' value={takeF} onChange={setTake} />
+                <TextField id='take-name' label='Take What?' value={takeF} onChange={(e) => updateVal(e, setTake)} />
                 <Button variant='contained' onClick={takeItem}>Take</Button>
                 <br />
-                <TextField id='drop-name' label='Drop What?' value={dropF} onChange={setDrop} />
+                <TextField id='drop-name' label='Drop What?' value={dropF} onChange={(e) => updateVal(e, setDrop)} />
                 <Button variant='contained' onClick={dropItem}>Drop</Button>
                 <br />
-                <TextField id='wear-name' label='Wear What?' value={wearF} onChange={setWear} />
+                <TextField id='wear-name' label='Wear What?' value={wearF} onChange={(e) => updateVal(e, setWear)} />
                 <Button variant='contained' onClick={wearItem}>Wear</Button>
                 <br />
-                <TextField id='undress-name' label='Unequip What?' value={unequipF} onChange={setUnequip} />
+                <TextField id='undress-name' label='Unequip What?' value={unequipF} onChange={(e) => updateVal(e, setUnequip)} />
                 <Button variant='contained' onClick={undressItem}>Unequip</Button>
                 <br />
-                <TextField id='examine-name' label='Examine What?' value={examineF} onChange={setExamine} />
+                <TextField id='examine-name' label='Examine What?' value={examineF} onChange={(e) => updateVal(e, setExamine)} />
                 <Button variant='contained' onClick={examineItem}>Examine</Button>
                 <br />
-                <TextField id='change-name' label='New Name' value={nameF} onChange={setName} />
+                <TextField id='change-name' label='New Name' value={nameF} onChange={(e) => updateVal(e, setName)} />
                 <Button variant='contained' onClick={changeName}>Change Name</Button>
                 <br />
-                <TextField id='carry-what' label='Carry What?' value={carryF} onChange={setCarry} />
+                <TextField id='carry-what' label='Carry What?' value={carryF} onChange={(e) => updateVal(e, setCarry)} />
                 <Button variant='contained' onClick={carryItem}>Carry (Companion)</Button>
                 <Button variant='contained' color='secondary' onClick={receiveItem}> Receive (Companion)</Button>
                 <br />
-                <TextField id='sell-name' label='Sell What?' value={sellF} onChange={setSell} />
+                <TextField id='sell-name' label='Sell What?' value={sellF} onChange={(e) => updateVal(e, setSell)} />
                 <Button variant='contained' onClick={sellItem}>Sell</Button>
                 <Button variant='contained' onClick={(e) => confirmSellItem(e, 'yes')}>Confirm Sale</Button>
                 <Button variant='contained' onClick={(e) => confirmSellItem(e, 'no')}>Cancel Sale</Button>
