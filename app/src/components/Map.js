@@ -5,7 +5,7 @@ const Map = (props) => {
   return (
     <Container maxWidth='sm' className='game-map'>
       Stuff
-    </Container>
+    </Container> 
   );
 };
 
