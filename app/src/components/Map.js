@@ -54,8 +54,7 @@ const Map = props => {
         position: "relative", 
         overflow: "auto", 
         backgroundColor: "#666",
-        display: "grid",
-        class: "grid-container"
+        display: "grid"
         }}>
         {mapData.map(room => {
           return (<Room room={room} key={room.room_id} />);
