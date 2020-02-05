@@ -20,5 +20,4 @@ const receive = async (token) => {
   return res.data;
 };
 
-export default carry;
-export {receive};
+export {carry, receive};

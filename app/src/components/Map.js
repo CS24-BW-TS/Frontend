@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
-import Room from "./room";
+import Room from "./Room";
 
 const Map = props => {
   const mapData = [
