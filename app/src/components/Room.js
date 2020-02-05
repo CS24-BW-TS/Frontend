@@ -19,28 +19,30 @@ import Box from "@material-ui/core/Box";
 const Room = ({ room }) => {
   const getCoords = coords => {
     let split = coords.split(",");
+    let x = (parseInt(split[0].slice(1), 10))
+    let y = (parseInt(split[1].slice(0, -1), 10))
     return [
-      parseInt(split[0].slice(1), 10),
-      parseInt(split[1].slice(0, -1), 10)
+      x*10, y*10
     ];
   };
 
-  let url = "";
-  if (room.n_to && room.n_to !== null) {
+  const coords = getCoords(room.coordinates)
+
+  let url = ""
+  if (room.n && room.n !== null) {
     url += "n";
   }
-  if (room.w_to && room.w_to !== null) {
+  if (room.w && room.w !== null) {
     url += "w";
   }
-  if (room.s_to && room.s_to !== null) {
+  if (room.s && room.s !== null) {
     url += "s";
   }
-  if (room.e_to && room.e_to !== null) {
+  if (room.e && room.e !== null) {
     url += "e";
   }
-
+ 
   return (
-    <Box>
       <div
         style={{
           backgroundImage:
@@ -60,16 +62,16 @@ const Room = ({ room }) => {
             (url === "wse" && `url(${wse})`) ||
             (url === "we" && `url(${we})`) ||
             (url === "ws" && `url(${ws})`),
-          width: 64,
-          height: 64,
+          width: 10,
+          height: 10,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
-          margin: "auto auto"
+          position: "absolute",
+          left: coords[0],
+          bottom: coords[1],
         }}
       >
-        {getCoords(room.coordinates)}
       </div>
-    </Box>
   );
 };
 

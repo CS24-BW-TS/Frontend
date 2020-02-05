@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
-import Room from "./room";
+import Room from "./Room";
 
 const Map = props => {
   const mapData = [
@@ -42,15 +42,25 @@ const Map = props => {
       s: 74,
       e: null,
       w: null
-    }
+    },
+    {"room_id": 125, "title": "A misty room", "description": "You are standing on grass and surrounded by a dense mist. You can barely make out the exits in any direction.", "coordinates": "(58,66)", "elevation": 0, "terrain": "NORMAL", "players": [], "items": [], "exits": ["n", "e", "w"], "cooldown": 15.0, "errors": [], "messages": ["You have walked east."]},
+    {"room_id": 83, "title": "A misty room", "description": "You are standing on grass and surrounded by a dense mist. You can barely make out the exits in any direction.", "coordinates": "(59,66)", "elevation": 0, "terrain": "NORMAL", "players": [], "items": [], "exits": ["s", "e", "w"], "cooldown": 15.0, "errors": [], "messages": ["You have walked east."]},
   ];
 
   return (
-    <Container maxWidth="sm" className="game-map">
-      {mapData.map(room => {
-        return <Room room={room} key={room.room_id} />;
-      })}
-    </Container>
+      <div style={{
+        height: "95vh", 
+        width: "95vw", 
+        position: "relative", 
+        overflow: "auto", 
+        backgroundColor: "#666",
+        display: "grid",
+        class: "grid-container"
+        }}>
+        {mapData.map(room => {
+          return (<Room room={room} key={room.room_id} />);
+        })}
+      </div>
   );
 };
 
