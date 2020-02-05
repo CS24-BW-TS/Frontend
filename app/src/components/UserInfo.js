@@ -54,6 +54,7 @@ const UserInfo = (props) => {
         move(token, d, next_room)
             .then(res => {
                 setContextValue(state =>({...state, logs: [...state.logs, res]}));
+                if(res.hasOwnProperty('messages')) props.addToLogs(res.messages);
                 updateCooldown(res.cooldown);
             })
             .catch(err => console.log(err))
@@ -65,6 +66,7 @@ const UserInfo = (props) => {
         status(token)
           .then(res => {
               console.log(res);
+              if(res.hasOwnProperty('messages')) props.addToLogs(res.messages);
               updateCooldown(res.cooldown);
           })
           .catch(e => console.log(e));
@@ -76,6 +78,7 @@ const UserInfo = (props) => {
         take(token, takeF)
           .then(res => {
               console.log(res);
+              if(res.hasOwnProperty('messages')) props.addToLogs(res.messages);
               updateCooldown(res.cooldown);
           })
           .catch(e => {
@@ -89,6 +92,7 @@ const UserInfo = (props) => {
         drop(token, dropF)
           .then(res => {
               console.log(res);
+              if(res.hasOwnProperty('messages')) props.addToLogs(res.messages);
               updateCooldown(res.cooldown);
           })
           .catch(e => {
@@ -102,6 +106,7 @@ const UserInfo = (props) => {
         wear(token, wearF)
           .then(res => {
               console.log(res);
+              if(res.hasOwnProperty('messages')) props.addToLogs(res.messages);
               updateCooldown(res.cooldown);
           })
           .catch(e => {
@@ -115,6 +120,7 @@ const UserInfo = (props) => {
         undress(token, unequipF)
           .then(res => {
               console.log(res);
+              if(res.hasOwnProperty('messages')) props.addToLogs(res.messages);
               updateCooldown(res.cooldown);
           })
           .catch(e => {
@@ -128,6 +134,7 @@ const UserInfo = (props) => {
         examine(token, examineF)
           .then(res => {
               console.log(res);
+              if(res.hasOwnProperty('messages')) props.addToLogs(res.messages);
               updateCooldown(res.cooldown);
           })
           .catch(e => {
@@ -141,6 +148,7 @@ const UserInfo = (props) => {
         sell(token, sellF)
           .then(res => {
               console.log(res);
+              if(res.hasOwnProperty('messages')) props.addToLogs(res.messages);
               updateCooldown(res.cooldown);
           })
           .catch(e => {
@@ -154,6 +162,7 @@ const UserInfo = (props) => {
         confirmSell(token, sellF, decision)
           .then(res => {
               console.log(res);
+              if(res.hasOwnProperty('messages')) props.addToLogs(res.messages);
               updateCooldown(res.cooldown);
           })
           .catch(e => console.log(e));
@@ -165,6 +174,7 @@ const UserInfo = (props) => {
         autoSell(token, sellF)
           .then(res => {
               console.log(res);
+              if(res.hasOwnProperty('messages')) props.addToLogs(res.messages);
               updateCooldown(res.cooldown);
           })
           .catch(e => console.log(e));
@@ -176,6 +186,7 @@ const UserInfo = (props) => {
         carry(token, carryF)
           .then(res => {
               console.log(res);
+              if(res.hasOwnProperty('messages')) props.addToLogs(res.messages);
               updateCooldown(res.cooldown);
           })
           .catch(e => console.log(e));
@@ -187,6 +198,7 @@ const UserInfo = (props) => {
         receive(token)
           .then(res => {
               console.log(res);
+              if(res.hasOwnProperty('messages')) props.addToLogs(res.messages);
               updateCooldown(res.cooldown);
           })
           .catch(e => console.log(e));
@@ -197,6 +209,7 @@ const UserInfo = (props) => {
         pray(token)
           .then(res => {
               console.log(res);
+              if(res.hasOwnProperty('messages')) props.addToLogs(res.messages);
               updateCooldown(res.cooldown);
           })
           .catch(e => console.log(e));
@@ -208,6 +221,7 @@ const UserInfo = (props) => {
         change_name(token, nameF)
           .then(res => {
               console.log(res);
+              if(res.hasOwnProperty('messages')) props.addToLogs(res.messages);
               updateCooldown(res.cooldown);
           })
           .catch(e => console.log(e));
@@ -234,23 +248,37 @@ const UserInfo = (props) => {
                 <Button variant='contained' color='secondary'>Run Algorithm</Button>
                 <Button variant='contained' color='secondary' onClick={playerStatus}>Player Status</Button>
                 <br />
-                <TextField id='take-name' label='Take What?' value={takeF} onChange={(e) => updateVal(e, setTake)} />
-                <Button variant='contained' onClick={takeItem}>Take</Button>
-                <br />
-                <TextField id='drop-name' label='Drop What?' value={dropF} onChange={(e) => updateVal(e, setDrop)} />
-                <Button variant='contained' onClick={dropItem}>Drop</Button>
-                <br />
-                <TextField id='wear-name' label='Wear What?' value={wearF} onChange={(e) => updateVal(e, setWear)} />
-                <Button variant='contained' onClick={wearItem}>Wear</Button>
-                <br />
-                <TextField id='undress-name' label='Unequip What?' value={unequipF} onChange={(e) => updateVal(e, setUnequip)} />
-                <Button variant='contained' onClick={undressItem}>Unequip</Button>
-                <br />
-                <TextField id='examine-name' label='Examine What?' value={examineF} onChange={(e) => updateVal(e, setExamine)} />
-                <Button variant='contained' onClick={examineItem}>Examine</Button>
-                <br />
-                <TextField id='change-name' label='New Name' value={nameF} onChange={(e) => updateVal(e, setName)} />
-                <Button variant='contained' onClick={changeName}>Change Name</Button>
+                <div className='form-side'>
+                  <div>
+                  <TextField id='take-name' label='Take What?' value={takeF} onChange={(e) => updateVal(e, setTake)} />
+                  <Button variant='contained' onClick={takeItem}>Take</Button>
+                  </div>
+                  <br />
+                  <div>
+                  <TextField id='drop-name' label='Drop What?' value={dropF} onChange={(e) => updateVal(e, setDrop)} />
+                  <Button variant='contained' onClick={dropItem}>Drop</Button>
+                  </div>
+                  <br />
+                  <div>
+                  <TextField id='wear-name' label='Wear What?' value={wearF} onChange={(e) => updateVal(e, setWear)} />
+                  <Button variant='contained' onClick={wearItem}>Wear</Button>
+                  </div>
+                  <br />
+                  <div>
+                  <TextField id='undress-name' label='Unequip What?' value={unequipF} onChange={(e) => updateVal(e, setUnequip)} />
+                  <Button variant='contained' onClick={undressItem}>Unequip</Button>
+                  </div>
+                  <br />
+                  <div>
+                  <TextField id='examine-name' label='Examine What?' value={examineF} onChange={(e) => updateVal(e, setExamine)} />
+                  <Button variant='contained' onClick={examineItem}>Examine</Button>
+                  </div>
+                  <br />
+                  <div>
+                  <TextField id='change-name' label='New Name' value={nameF} onChange={(e) => updateVal(e, setName)} />
+                  <Button variant='contained' onClick={changeName}>Change Name</Button>
+                  </div>
+                </div>
                 <br />
                 <TextField id='carry-what' label='Carry What?' value={carryF} onChange={(e) => updateVal(e, setCarry)} />
                 <Button variant='contained' onClick={carryItem}>Carry (Companion)</Button>

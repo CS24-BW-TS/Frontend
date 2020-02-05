@@ -11,6 +11,7 @@ import {MuiThemeProvider} from '@material-ui/core/styles';
 
 function App() {
   const [token, setToken] = useState('');
+  const [logs, setLogs] = useState([]);
   const [value, setContextValue] = useState({
     logs: [{
       "room_id": 0,
@@ -25,6 +26,9 @@ function App() {
       "messages": ["You have walked south.", "Wise Explorer: -50% CD"]
     }]
   });
+  const addToLogs = (msg) => {
+    setLogs([...logs, msg]);
+  };
   return (
     <div className="App">
       <MapContext.Provider value={{value, setContextValue}}>
@@ -32,8 +36,8 @@ function App() {
         <header className="App-header">
           <div className='game'>
             <Map />
-            <UserInfo token={token} setToken={setToken} />
-            <Logs />
+            <UserInfo token={token} setToken={setToken} addToLogs={addToLogs} />
+            <Logs logs={logs} />
           </div>
         </header>
         </MuiThemeProvider>
