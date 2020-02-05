@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosWithAuth from "./axiosWithAuth";
 
 
 /* Example response:
@@ -21,8 +22,9 @@ import axios from 'axios';
 
 const status = async (token) => {
   let url = 'https://lambda-treasure-hunt.herokuapp.com/api/adv/status/';
-  let body = {Authorization: `Token ${token}`};
-  let res = await axios.post(url, body);
+  let awa = axiosWithAuth(token, url);
+  let body = {};
+  let res = await awa.post(url, body);
   return res.data;
 };
 
