@@ -13,18 +13,8 @@ function App() {
   const [token, setToken] = useState('');
   const [logs, setLogs] = useState([]);
   const [value, setContextValue] = useState({
-    logs: [{
-      "room_id": 0,
-      "title": "A Dark Room",
-      "description": "You cannot see anything.",
-      "coordinates": "(60,60)",
-      "players": [],
-      "items": [],
-      "exits": ["n", "s", "e", "w"],
-      "cooldown": 50.0,
-      "errors": [],
-      "messages": ["You have walked south.", "Wise Explorer: -50% CD"]
-    }]
+    logs: [],
+    rooms: []
   });
   const addToLogs = (msg) => {
     setLogs([...logs, msg]);
