@@ -21,24 +21,27 @@ const Room = ({ room }) => {
     let split = coords.split(",");
     let x = (parseInt(split[0].slice(1), 10))
     let y = (parseInt(split[1].slice(0, -1), 10))
+    let adjustedx = (x - 46) * 30
+    let adjustedy = (y - 50) * 30
     return [
-      x*10, y*10
+      adjustedx, adjustedy
     ];
   };
 
   const coords = getCoords(room.coordinates)
 
   let url = ""
-  if (room.n && room.n !== null) {
+  
+  if (room.exits && room.exits.includes("n")) {
     url += "n";
   }
-  if (room.w && room.w !== null) {
+  if (room.exits && room.exits.includes("w")) {
     url += "w";
   }
-  if (room.s && room.s !== null) {
+  if (room.exits && room.exits.includes("s")) {
     url += "s";
   }
-  if (room.e && room.e !== null) {
+  if (room.exits && room.exits.includes("e")) {
     url += "e";
   }
  
@@ -62,13 +65,13 @@ const Room = ({ room }) => {
             (url === "wse" && `url(${wse})`) ||
             (url === "we" && `url(${we})`) ||
             (url === "ws" && `url(${ws})`),
-          width: 10,
-          height: 10,
+          width: 30,
+          height: 30,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           position: "absolute",
           left: coords[0],
-          bottom: coords[1],
+          bottom: coords[1]
         }}
       >
       </div>
