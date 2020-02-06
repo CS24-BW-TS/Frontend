@@ -21,8 +21,8 @@ const Room = ({ room }) => {
     let split = coords.split(",");
     let x = (parseInt(split[0].slice(1), 10))
     let y = (parseInt(split[1].slice(0, -1), 10))
-    let adjustedx = (x - 46) * 25
-    let adjustedy = (y - 50) * 25
+    let adjustedx = (x - 46) * 30
+    let adjustedy = (y - 50) * 30
     return [
       adjustedx, adjustedy
     ];
