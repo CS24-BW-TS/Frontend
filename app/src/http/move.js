@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosWithAuth from "./axiosWithAuth";
 
 // if we include the id of the room we move to we get the wise explorer bonus
 // we need to also add the room to our state if it isn't there
@@ -32,32 +33,27 @@ import axios from 'axios';
 
 const move = async (token, dir, next_room) => {
   let url = 'https://lambda-treasure-hunt.herokuapp.com/api/adv/move/';
-  // body: {direction: dir}
-  let header = {Authorization: `Token ${token}`, 'Content-Type': 'application/json'};
+  let awa = axiosWithAuth(token, url);
   let body = {direction: dir};
-  let axiosWithAuth = axios.create({
-    baseURL: url,
-    headers: header
-  });
-  console.log(body);
   if(next_room) body['next_room_id'] = next_room;
-  let res = await axiosWithAuth.post('', body);
-  console.log(res);
+  let res = await awa.post('', body);
   return res.data;
 };
 
 const fly = async (token, dir, next_room=null) => {
   let url = 'https://lambda-treasure-hunt.herokuapp.com/api/adv/fly/';
-  let body = {Authorization: `Token ${token}`, direction: dir};
+  let awa = axiosWithAuth(token, url);
+  let body = {direction: dir};
   if(next_room) body['next_room_id'] = next_room;
-  let res = await axios.post(url, body);
+  let res = await awa.post(url, body);
   return res.data;
 };
 
 const dash = async (token, dir, num_rooms, next_room_ids) => {
-  let url = 'https://lambda-treasure-hunt.herokuapp.com/api/adv/dash/'
-  let body = {Authorization: `Token ${token}`, direction: dir, num_rooms, next_room_ids};
-  let res = axios.post(url, body);
+  let url = 'https://lambda-treasure-hunt.herokuapp.com/api/adv/dash/';
+  let awa = axiosWithAuth(token, url);
+  let body = {direction: dir, num_rooms, next_room_ids};
+  let res = awa.post(url, body);
   return res.data;
 };
 
