@@ -9,7 +9,7 @@ import nwe from "./assets/nwe.png";
 import nws from "./assets/nws.png";
 import s from "./assets/s.png";
 import se from "./assets/se.png";
-import w from "./assets/we.png";
+import w from "./assets/w.png";
 import ws from "./assets/ws.png";
 import wse from "./assets/wse.png";
 import we from "./assets/we.png";
@@ -73,7 +73,7 @@ const Room = ({ room }) => {
           left: coords[0],
           bottom: coords[1]
         }}
-      >
+      >{room.room_id}
       </div>
   );
 };
